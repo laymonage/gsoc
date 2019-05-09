@@ -77,6 +77,8 @@ disableHugoGeneratorInject = false
   defaultTheme = "dark"
   themeColor = "#252627"
 
+  listTitle = "posts"
+
   [params.logo]
     logoText     = "~/gsoc"
     logoHomeLink = "/"
