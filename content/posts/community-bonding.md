@@ -4,6 +4,7 @@ date: 2019-06-03T09:35:35.687Z
 draft: false
 toc: false
 comments: true
+slug: community-bonding
 ---
 
 In the [official GSoC timeline][timeline], there's a Community Bonding period

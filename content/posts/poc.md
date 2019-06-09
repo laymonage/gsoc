@@ -4,6 +4,7 @@ date: 2019-06-04T09:35:05.687Z
 draft: false
 toc: false
 comments: true
+slug: poc
 ---
 
 There's this neat little python package called [django-jsonfallback]. It's

@@ -4,6 +4,7 @@ date: 2019-06-09T12:37:01+07:00
 draft: false
 toc: false
 comments: true
+slug: scratch
 ---
 
 [Last week], I improved an existing Django package and implemented some
