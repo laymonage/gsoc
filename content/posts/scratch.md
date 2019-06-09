@@ -341,7 +341,7 @@ Whoa, this turned out long. Anyway, if you want to leave a feedback, feel
 free to comment below or on the PR, I'd love to hear some thoughts about
 this. I'll be back here with another post next week!
 
-[Last week]: /drafting-a-poc-jsonfield-for-sqlite
+[Last week]: {{< ref "poc.md" >}}
 [django-docker-box]: https://github.com/django/django-docker-box
 [custom model fields]: https://docs.djangoproject.com/en/2.2/howto/custom-model-fields/
 [JSON1]: https://www.sqlite.org/json1.html
