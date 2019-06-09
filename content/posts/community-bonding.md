@@ -5,6 +5,7 @@ draft: false
 toc: false
 comments: true
 ---
+
 In the [official GSoC timeline][timeline], there's a Community Bonding period
 on May 7 - 27. To quote the [glossary][glossary], it's
 
@@ -62,7 +63,6 @@ conditions and decisions. I appreciate them a lot!
 
 Over the first week, I started working on a proof-of-concept `JSONField` for
 SQLite, which I will explain in the next post.
-
 
 [timeline]: https://summerofcode.withgoogle.com/how-it-works/#timeline
 [glossary]: https://developers.google.com/open-source/gsoc/resources/glossary#community_bonding_period

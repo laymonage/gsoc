@@ -5,6 +5,7 @@ draft: false
 toc: false
 comments: true
 ---
+
 There's this neat little python package called [django-jsonfallback]. It's
 made by one of my mentors. To quote the description, this package allows you
 to
@@ -69,7 +70,8 @@ with these functions.
 The existing PostgreSQL JSONField already has some lookups and transforms
 implemented. I made a simple summary of them in [this Google Sheets document].
 Looking at the JSON1 functions, I found `json_extract()` or `json_type()`
-might be useful in implementing `has_key`, `has_any_keys`, and `has_keys`lookups.
+might be useful in implementing `has_key`, `has_any_keys`, and `has_keys`
+lookups.
 
 How would that work?
 
