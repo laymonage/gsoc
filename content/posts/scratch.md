@@ -17,7 +17,6 @@ to run Django's test suite with all database backends with the help of
 bit more complex). However, I'm just going to talk about writing the field
 as that's more interesting.
 
-
 As before, the docs on how to write [custom model fields] is very handy.
 I started building my own `JSONField` and got it working in a relatively short
 time. Not without bugs and quirks I had to deal with on each database backend,
@@ -129,7 +128,7 @@ later.)
 Anyway, that's just some SQLite magic.
 
 For MySQL and MariaDB, we can use `json` as our data type and our `JSONField`
-would work without having to anything else. That's pretty cool!
+would work without having to change anything else. That's pretty cool!
 
 If we want to make it cooler, we can add an SQL `CHECK` constraint using the
 `JSON_VALID` function available in SQLite, MySQL, and MariaDB. To do so, we
@@ -177,7 +176,7 @@ def from_db_value(self, value, expression, connection):
 ```
 
 However, I want to spice things up a bit. Let's allow custom JSON encoder
-**and** decoder to be used in our serialization process!
+**and** decoder to be used in our serialization and deserialization process!
 
 Both `json.dumps` and `json.loads` accept a keyword argument `cls`. It can be
 used to specify the `class` of a JSON encoder and decoder, respectively. The
@@ -229,11 +228,10 @@ again. It could work, but that would be slow. We need a way to prevent
 `psycopg2` from adapting the value to Python objects.
 
 According to the docs, we can either cast the column to `text` in the query,
-or register a no-op `json.loads` with `register_default_json` (the
-registration is shared for the same database connection). If we choose the
-latter, we might break compatibility with `contrib.postgres`'s `JSONField`,
-since it doesn't allow a custom decoder and it relies on `psycopg2`'s
-`json.loads` instead.
+or register a no-op `loads` with `register_default_json` (the registration
+is shared for the same database connection). If we choose the latter, we
+might break compatibility with `contrib.postgres`'s `JSONField`, since it
+doesn't allow a custom decoder and it relies on `psycopg2`'s `loads` instead.
 
 Thankfully, we can implement the former by overriding `select_format`. It's
 not documented as of this writing, but the docstring gives a clue on how it
@@ -294,7 +292,7 @@ def db_check(self, connection):
 ```
 
 Another thing to note is that `cx_Oracle` returns a Python object of type
-`LOB` for values with `BLOB`, `CLOB` and `NCLOB` data types. We cannot simply
+`LOB` for values with `BLOB`, `CLOB`, and `NCLOB` data types. We cannot simply
 use `json.loads` as the decoder doesn't know how to decode `LOB` objects. In
 order to do that, we must obtain the `str` equivalent of the `LOB` object by
 calling the `.read` method of the `LOB`.
