@@ -331,9 +331,8 @@ the value.
 And, that's it! We've successfully implemented our own unified `JSONField`. We
 have yet to implement custom lookups and transforms, but that's on our to-do
 list. I made a [draft PR] to Django for this field today (which also happens
-to be my birthday! <sup><sub>Not that anyone cares</sub></sup>). If some
-things in that PR turn out different from what I wrote here, maybe I've found
-some better approaches in implementing them.
+to be my birthday!). If some things in that PR turn out different from what I
+wrote here, maybe I've found some better approaches in implementing them.
 
 Whoa, this turned out long. Anyway, if you want to leave a feedback, feel
 free to comment below or on the PR, I'd love to hear some thoughts about
