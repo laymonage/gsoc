@@ -191,7 +191,7 @@ and `json.loads` calls like so:
 ```python
 def __init__(self, encoder=None, decoder=None, default=dict, *args, **kwargs):
     self.encoder, self.decoder = encoder, decoder
-    super().__init__(*args, **kwargs)
+    super().__init__(default=default, *args, **kwargs)
 
 def get_prep_value(self, value):
     if value is None:
