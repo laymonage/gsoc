@@ -58,7 +58,8 @@ def formfield(self, **kwargs):
     })
 ```
 
-On the other hand, I finally touched the backend code to add a new database feature in Django, named `supports_json`. It's a flag that determines if the
+On the other hand, I finally touched the backend code to add a new database
+feature in Django, named `supports_json`. It's a flag that determines if the
 currently used database backend supports JSON. I used it to prevent the use of
 `JSONField` if the backend does not support it. It may or may not be useful for
 web developers, I'm not really sure `¯\_(ツ)_/¯`.
