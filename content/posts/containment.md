@@ -224,7 +224,7 @@ to explain this stuff in a simpler way because it really is kind of complex.
 The next post will be about key transforms, where things get even more ~~fun~~
 complex <sup><sub>(or not? Heh, I don't know)</sub></sup>. Until then, bye!
 
-**Update:** I realized I missed something for the Oracle implementation. If
+**Update 1:** I realized I missed something for the Oracle implementation. If
 the Python dictionary includes a key with `None` as its value, the resulting
 part of the `WHERE` clause would be:
 
@@ -249,9 +249,22 @@ SQLite, we can make use of the `JSON_TYPE` function which returns the string
 `null` for JSON value `null` that exists at a given path. Well, turns out we
 **do** need the `COALESCE` function, after all!
 
+**Update 2:** Simon <sup><sub>(yes, <em>that</em> Simon)</sub></sup> [replied]
+to my tweet, suggesting the use of a custom SQLite function to implement the
+`contained_by` lookup. I decided to implement the function for `contains`
+lookup and flip the arguments for `contained_by` lookup, kind of like how it's
+done on MySQL.
+
+The implementation of the lookups is very simple. The function takes two
+arguments, the target and the candidate. We just need to `json.loads()` them
+both. If they're both dictionaries, we can use the comparison operator `>=`
+with the `.items()` of the dictionaries. Otherwise, just check if both objects
+are equal. That's it!
+
 [`JSON_CONTAINS`]: https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-contains
 [`JSON_QUERY`]: https://docs.oracle.com/database/121/ADXDB/json.htm#ADXDB6277
 [`JSON_VALUE`]: https://docs.oracle.com/database/121/ADXDB/json.htm#ADXDB6263
 [fiddling]: https://dbfiddle.uk/?rdbms=oracle_18&fiddle=1406ec1d184af5446d8b6cfcb3823b0e
 [`JSON_EXTRACT`]: https://www.sqlite.org/json1.html#jex
 [`JSON()`]: https://www.sqlite.org/json1.html#jmini
+[replied]: https://twitter.com/simonw/status/1159077881957371904
