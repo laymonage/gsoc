@@ -83,10 +83,11 @@ I don't really mind having these two functions **if** we have a combination of
 the two. On MariaDB, it has `JSON_QUERY`, `JSON_VALUE`, and `JSON_EXTRACT`.
 You guessed it: `JSON_EXTRACT` is the combination of the first two.
 
-There's a way to get around this, though. We can use `COALESCE`. However, it's
-not really needed now because we can still identify which function to use by
-looking at the right-hand-side of the lookup. We will need to use `COALESCE`
-when we implement the transforms later.
+There's a way to get around this, though. We can use `COALESCE`. ~~However,
+it's not really needed now because we can still identify which function to use
+by looking at the right-hand-side of the lookup~~ (see update at the bottom of
+this post). We will need to use `COALESCE` when we implement the transforms
+later.
 
 So, the query for the lookup should be something like:
 
@@ -222,6 +223,31 @@ Well, that's it for this post! Sorry if it's confusing, I don't really know how
 to explain this stuff in a simpler way because it really is kind of complex.
 The next post will be about key transforms, where things get even more ~~fun~~
 complex <sup><sub>(or not? Heh, I don't know)</sub></sup>. Until then, bye!
+
+**Update:** I realized I missed something for the Oracle implementation. If
+the Python dictionary includes a key with `None` as its value, the resulting
+part of the `WHERE` clause would be:
+
+```sql
+JSON_VALUE(myapp_dog.data, '$.somekey') = JSON_VALUE('{"val": null}', '$.val')
+```
+
+and that wouldn't work because it would be like `NULL = NULL`.
+
+To check for an existing key with a `null` value, we need to use `JSON_EXISTS`
+combined with `JSON_QUERY(...) IS NULL` and `JSON_VALUE(...) IS NULL`. So, the
+correct `WHERE` clause is:
+
+```sql
+JSON_EXISTS(myapp_dog.data, '$.somekey') AND COALESCE(
+    JSON_QUERY(myapp_dog.data, '$.somekey'), JSON_VALUE(myapp_dog.data, '$.somekey')
+) IS NULL
+```
+
+Like I said, things are unnecessarily more complex on Oracle Database. On
+SQLite, we can make use of the `JSON_TYPE` function which returns the string
+`null` for JSON value `null` that exists at a given path. Well, turns out we
+**do** need the `COALESCE` function, after all!
 
 [`JSON_CONTAINS`]: https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html#function_json-contains
 [`JSON_QUERY`]: https://docs.oracle.com/database/121/ADXDB/json.htm#ADXDB6277
