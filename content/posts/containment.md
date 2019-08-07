@@ -9,7 +9,7 @@ slug: containment
 
 It's been quite a long time since my last post. Truth is, I've been busy
 implementing the remaining lookups on all database backends and polishing the
-`JSONField`. Now, the field is pretty much completed and I will try to explain
+`JSONField`. Now, the field is pretty much complete and I will try to explain
 the implementation here. I'll probably split the explanation into multiple
 posts if it becomes too long. In this post, I'll explain the containment
 lookups, i.e. `contains` and `contained_by`.
@@ -186,7 +186,7 @@ object. Kind of like an empty set is a subset of any set.
 
 On Oracle, we can only store valid JSON objects or arrays and not scalars.
 However, there's no function to check whether the JSON type is an object or an
-array. A trick I came up with is by using pattern-matching with the `'{%%}'`
+array. A trick I came up with is by using pattern-matching with the `'{%}'`
 pattern. Basically, it means that the data "starts with `{` and ends with `}`",
 which is what we need.
 
