@@ -172,7 +172,7 @@ Until then, see you!
 [docs]: https://docs.djangoproject.com/en/2.2/topics/db/sql/#passing-parameters-into-raw
 [section]: https://docs.djangoproject.com/en/2.2/howto/custom-lookups/
 [`KeyTransform`]: {{< ref "transforms.md" >}}
-[something off]: https://github.com/django/django/blob/4b78420d250df5e21763633871e486ee76728cc4/django/contrib/postgres/fields/jsonb.py#L117
+[something off]: https://github.com/django/django/blob/4b78420d250df5e21763633871e486ee76728cc4/django/contrib/postgres/fields/jsonb.py#L111-L117
 [can't]: https://stackoverflow.com/questions/16700006/feature-kwargs-allowing-improperly-named-variables
 [issued]: https://www.djangoproject.com/weblog/2019/aug/01/security-releases/#s-cve-2019-14234-sql-injection-possibility-in-key-and-index-lookups-for-jsonfield-hstorefield
 [fix]: https://github.com/django/django/commit/7deeabc7c7526786df6894429ce89a9c4b614086
