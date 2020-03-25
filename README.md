@@ -25,4 +25,4 @@
 [gsoc]: https://gsoc.laymonage.com
 [laymonage]: https://github.com/laymonage
 [GitHub Gist of project draft proposal]: https://gist.github.com/laymonage/b53a1acbbab36b77776cd526b48fd2a5
-[Project on GSoC website]: https://summerofcode.withgoogle.com/projects/#5339928773263360
+[Project on GSoC website]: https://summerofcode.withgoogle.com/archive/2019/projects/6436908320686080
